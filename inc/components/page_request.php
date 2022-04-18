@@ -95,16 +95,12 @@
 
             function _delete_comp($id) {
                 return '
-                    <a class="text-danger" href="\api\delete-sent-invoice\\'.$id.'" role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a class="text-danger" href="\api\delete-sent-invoice\\'.$id.'" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 ';
             }
 
             function _edit_comp($id) {
-                return '<a class="text-success" href="\invoice-detail\\'.$id.'" role="button"><i class="fa fa-user" aria-hidden="true"></i></a>';
-            }
-
-            function _add_comp($id) {
-                return '<a class="text-warning" href="\invoice-detail\\'.$id.'" role="button"><i class="fas fa-dollar-sign" aria-hidden="true"></i></a>';
+                return '<a class="text-success" href="\invoice-detail\\'.$id.'" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
             }
 
             $employee = new NewTable();
