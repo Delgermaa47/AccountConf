@@ -45,6 +45,7 @@
 
         protected function  navbar() {
             $request_url = 'http://localhost:81/index.php?page=account-config';
+            $open_modal = 'http://localhost:81/index.php?api=open-modal';
             $content = $this->home();
             echo 
                 '<div class="container">
@@ -79,6 +80,15 @@
                                             <label class="">VB тохиргооны хуудас</label>
                                         </div>
                                         <div class="col-md-12 py-4">
+                                        <div class="col-md-12">
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary rounded float-right"
+                                                onclick="getPage('.check_string($open_modal).')" 
+                                                role="button">
+                                                Нэмэх
+                                            </button>
+                                        </div>
                                         '.
                                             $content
                                         .'

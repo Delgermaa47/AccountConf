@@ -7,26 +7,24 @@
     $uri = rtrim(dirname($_SERVER["SCRIPT_NAME"]), '/' );
     $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
 
-    $get_requests = array( 
-        'invoice-detail' => "/api/invoice-detail/(?'invno'\d+)",
+    $api_requests = array( 
+        'open-modal' => "/open-modal",
     );
 
     $page_requests = array( 
         'home' => "/",
         'account-config' => "/account-config",
     );
-
-    $post_requests = array(
-        'invoice-detail' => "/api/invoice-detail/(?'invno'\d+)",
-    );
     
     $request_method = $_SERVER['REQUEST_METHOD'];
 
     $uri = '/' . get_or_null($_GET['page']);
+    $uri = $uri. get_or_null($_GET['api']);
+
     if (in_array($request_method, ['GET', 'POST'])) {
 
         if (strstr($uri, "api")) {
-            $request_rules = $request_method === 'GET' ? $get_requests : $post_requests;
+            $request_rules = $api_requests;
             require_once ROOT."\\inc\\components\\api_request.php";
             $req = new ApiList(); 
         }
