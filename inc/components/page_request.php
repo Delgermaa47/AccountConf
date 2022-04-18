@@ -43,25 +43,37 @@
         }
 
         protected function  navbar() {
+            $request_url = 'http://localhost:81/index.php?page=account-config';
             echo 
-                '<div class="col-md-12">
+                '<div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card">
-                                <div col-md-12" style="margin-bottom: 0px;">
-                                    <label"><span class="uldown"></span>VB тохиргооны хуудас</label>
-                                </div>
-                                <div
-                                    class="col-md-12 list-group-item-action">
-                                    <a 
-                                        href="#"
-                                        class="fa fa-gear"
-                                        style="text-align:center;">Дансны тохиргооны цэс</a>
+                            <div class="card rounded m-0">
+                                <div class="card-body font-weight-bold w-100">
+                                    <div class="col-md-12 text-primary d-flex justify-content-center ">
+                                        <i class="fa fa-minus-circle mr-1 mt-1"></i>
+                                        <span class="my-0">VB тохиргооны хуудас</span>
+                                    </div>
+                                    <div 
+                                        class="col-md-12 text-primary d-flex justify-content-center ml-2"
+                                    >
+                                        <a onclick="getPage('.check_string($request_url).')" role="button">
+                                            <i class="fa fa-gear mr-1 mt-1"></i>
+                                            Дансны тохиргооны хэсэг
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <div class="card body" id="content">
+                            <div class="card rounded m-0">
+                                <div class="card-body font-weight-bold w-100">
+                                    <div 
+                                        class="col-md-12 text-primary d-flex justify-content-center"
+                                        id="content"
+                                    >
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
