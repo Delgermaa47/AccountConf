@@ -6,7 +6,6 @@
 
     $uri = rtrim(dirname($_SERVER["SCRIPT_NAME"]), '/' );
     $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
-    $uri = urldecode( $uri );
 
     $get_requests = array( 
         'invoice-detail' => "/api/invoice-detail/(?'invno'\d+)",
@@ -14,6 +13,7 @@
 
     $page_requests = array( 
         'home' => "/",
+        'account-config' => "/account-config",
     );
 
     $post_requests = array(
@@ -21,6 +21,8 @@
     );
     
     $request_method = $_SERVER['REQUEST_METHOD'];
+
+    $uri = '/' . get_or_null($_GET['page']);
     if (in_array($request_method, ['GET', 'POST'])) {
 
         if (strstr($uri, "api")) {
@@ -36,6 +38,7 @@
         
         foreach ( $request_rules as $action_name => $rule ) {
             if ( preg_match( '~^'.$rule.'$~i', $uri, $params ) ) {
+                
                 $req->request_name = $action_name;
                 $req->params = $params;
                 $res = $req->request_res();
