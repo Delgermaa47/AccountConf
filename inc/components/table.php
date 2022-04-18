@@ -20,7 +20,7 @@
             
             $header_body = '';
             $header_body_req = empty($header_body_req) ? [] : $header_body_req;
-
+            $header_body = $header_body.'<th>№</th>';
             foreach($header_body_req as $key=>$value) {
                 extract($value);
                 $header_body = $header_body.'<th scope='.$scope.'class='.$className.'>'.$value.'</th>';
@@ -29,7 +29,9 @@
             $table_body = '';
             
             foreach($body_datas as $key=>$body_value) {
+                $index = $key + 1;
                 $table_body = $table_body.'<tr>';
+                $table_body = $table_body.'<td>'.$index.'</td>';
                 foreach($header_body_req as $key=>$head_value) {
                     $table_body = $table_body.'<td class='.$head_value['className'].'>';
                     // $field_name = $body_value[strtoupper($head_value['field'])];

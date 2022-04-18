@@ -32,6 +32,7 @@
             switch ($request_name) {
                 case 'home':
                     $this->navbar();
+                    // $this->home();
                     die();
                 case 'account-config':
                     $this->home();
@@ -44,6 +45,7 @@
 
         protected function  navbar() {
             $request_url = 'http://localhost:81/index.php?page=account-config';
+            $content = $this->home();
             echo 
                 '<div class="container">
                     <div class="row">
@@ -71,7 +73,9 @@
                                     <div 
                                         class="col-md-12 text-primary d-flex justify-content-center"
                                         id="content"
-                                    >
+                                    >'.
+                                        $content
+                                    .'
                                     </div>
                                 </div>
                             </div>
@@ -97,18 +101,12 @@
             }
 
             $employee = new NewTable();
-            $employee->className="table table-dark mt-4 pt-4";
+            $employee->className="table table-striped mt-4 pt-4";
             $employee->header_details = array(
                 "class_name" => "bg-dark text-white",
                 "header_data" => array(
-                    array("field"=>"invno", "value"=>"№", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"accntno", "value"=>"Хүлээн авах данс", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"amount", "value"=>"Нийт дүн", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"invstatus", "value"=>"Төлөв", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"invdesc", "value"=>"Талбар", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"created_at", "value"=>"Огноо", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"invno", "value"=>"", "className"=>"", "scope"=> " ", "action"=>true, "have_icon"=> true, "key_name"=> "edit_row"),
-                    array("field"=>"invno", "value"=>"", "className"=>"", "scope"=> " ", "action"=>true, "have_icon"=> true, "key_name"=> "delete_row")
+                    array("field"=>"accntno", "value"=>"Нэр", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
+                    array("field"=>"accntno", "value"=>"Төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
                     
                 )
             );
@@ -122,12 +120,8 @@
             $query = 'select * from vbismiddle.invoicesent';
             $employee->body_datas = _select($query);
             // $employee->body_datas = json_decode(file_post_contents('http://172.26.153.11/api/invoice-list', ["query"=>$query]), true);
-            console_log(
-               '<div class="container"><label>Илгээсэн</label>'.$employee->diplay_table().'</div>'
-            );
-
-        }
-
+            return $employee->diplay_table();
+        } 
         protected function inv_detial() {
             $invoice_form = new InvoiceForm();
             $invoice_id = $this->params['id'];
