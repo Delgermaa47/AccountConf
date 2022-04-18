@@ -36,7 +36,7 @@
                 case 'account-config':
                     $this->home();
                     die();
-                    
+
                 default: $this->page404();
 
             }
@@ -47,8 +47,8 @@
                 '<div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="griddiv">
-                                <div class="list-header col-md-12" style="margin-bottom: 0px;">
+                            <div class="card">
+                                <div col-md-12" style="margin-bottom: 0px;">
                                     <label"><span class="uldown"></span>VB тохиргооны хуудас</label>
                                 </div>
                                 <div
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <div class="griddiv" id="content">
+                            <div class="card body" id="content">
                             </div>
                         </div>
                     </div>
