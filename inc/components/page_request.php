@@ -52,7 +52,7 @@
                         <div class="col-md-3">
                             <div class="card rounded m-0">
                                 <div class="card-body font-weight-bold w-100">
-                                    <div class="col-md-12 text-primary d-flex justify-content-center ">
+                                    <div class="col-md-12 text-primary d-flex justify-content-center mb-4">
                                         <i class="fa fa-minus-circle mr-1 mt-1"></i>
                                         <span class="my-0">VB тохиргооны хуудас</span>
                                     </div>
@@ -95,16 +95,12 @@
 
             function _delete_comp($id) {
                 return '
-                    <a class="text-danger" href="\api\delete-sent-invoice\\'.$id.'" role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a class="text-danger" href="\api\delete-sent-invoice\\'.$id.'" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 ';
             }
 
             function _edit_comp($id) {
-                return '<a class="text-success" href="\invoice-detail\\'.$id.'" role="button"><i class="fa fa-user" aria-hidden="true"></i></a>';
-            }
-
-            function _add_comp($id) {
-                return '<a class="text-warning" href="\invoice-detail\\'.$id.'" role="button"><i class="fas fa-dollar-sign" aria-hidden="true"></i></a>';
+                return '<a class="text-success" href="\invoice-detail\\'.$id.'" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
             }
 
             $employee = new NewTable();
@@ -112,8 +108,8 @@
             $employee->header_details = array(
                 "class_name" => "bg-dark text-white",
                 "header_data" => array(
-                    array("field"=>"types", "value"=>"Дансны төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"prodname", "value"=>"Төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
+                    array("field"=>"types", "value"=>"Төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
+                    array("field"=>"prodname", "value"=>"Нэр", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
                     array("field"=>"types", "value"=>"", "className"=>"", "scope"=> " ", "action"=>true, "have_icon"=> true, "key_name"=> "edit_row"),
                     array("field"=>"types", "value"=>"", "className"=>"", "scope"=> " ", "action"=>true, "have_icon"=> true, "key_name"=> "delete_row")
                 )
