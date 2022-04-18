@@ -71,11 +71,18 @@
                             <div class="card rounded m-0">
                                 <div class="card-body font-weight-bold w-100">
                                     <div 
-                                        class="col-md-12 text-primary d-flex justify-content-center"
+                                        class="col-md-12 text-primary d-block"
                                         id="content"
-                                    >'.
-                                        $content
-                                    .'
+                                    >
+                                        <div class="col-md-12 border-bottom border-primary">
+                                            <i class="fa fa-minus-circle mr-1 mt-1"></i>
+                                            <label class="">VB тохиргооны хуудас</label>
+                                        </div>
+                                        <div class="col-md-12 py-4">
+                                        '.
+                                            $content
+                                        .'
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +103,7 @@
                 return '<a class="text-success" href="\invoice-detail\\'.$id.'" role="button"><i class="fa fa-user" aria-hidden="true"></i></a>';
             }
 
-            function _pay_comp($id) {
+            function _add_comp($id) {
                 return '<a class="text-warning" href="\invoice-detail\\'.$id.'" role="button"><i class="fas fa-dollar-sign" aria-hidden="true"></i></a>';
             }
 
@@ -105,8 +112,8 @@
             $employee->header_details = array(
                 "class_name" => "bg-dark text-white",
                 "header_data" => array(
-                    array("field"=>"accntno", "value"=>"Нэр", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    array("field"=>"accntno", "value"=>"Төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
+                    array("field"=>"types", "value"=>"Дансны төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
+                    array("field"=>"prodname", "value"=>"Төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
                     
                 )
             );
@@ -117,8 +124,26 @@
                 "edit_row" => "_edit_comp",
                 // "pay_row" => "_pay_comp"
             );
-            $query = 'select * from vbismiddle.invoicesent';
-            $employee->body_datas = _select($query);
+            $query = '
+                select
+                    types, prodname
+                from 
+                    forsoft.tabpro_product_dic
+                group by types,  prodname
+                order by types
+                ';
+            
+            $temp_data = [];
+            $check_arr = [];
+
+            foreach (_select($query) as $value) {
+                extract($value);
+                if(!in_array($types, $check_arr)) {
+                    array_push($temp_data, $value);
+                    array_push($check_arr, $types);
+                }
+            }
+            $employee->body_datas = $temp_data;
             // $employee->body_datas = json_decode(file_post_contents('http://172.26.153.11/api/invoice-list', ["query"=>$query]), true);
             return $employee->diplay_table();
         } 
