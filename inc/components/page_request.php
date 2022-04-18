@@ -114,10 +114,10 @@
                 "header_data" => array(
                     array("field"=>"types", "value"=>"Дансны төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
                     array("field"=>"prodname", "value"=>"Төрөл", "className"=>"", "scope"=> " ", "action"=>false, "have_icon"=> false),
-                    
+                    array("field"=>"types", "value"=>"", "className"=>"", "scope"=> " ", "action"=>true, "have_icon"=> true, "key_name"=> "edit_row"),
+                    array("field"=>"types", "value"=>"", "className"=>"", "scope"=> " ", "action"=>true, "have_icon"=> true, "key_name"=> "delete_row")
                 )
             );
-
 
             $employee->added_datas = array(
                 "delete_row" => "_delete_comp",
