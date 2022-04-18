@@ -100,13 +100,9 @@
                 "edit_row" => "_edit_comp",
                 // "pay_row" => "_pay_comp"
             );
-            $query = 'select * from vbismiddle.invoicesentzxczxc';
-            // $result = _select($query);
+            $query = 'select * from vbismiddle.invoicesent';
             $employee->body_datas = _select($query);
-
-            write_to_file(json_encode($employee->body_datas));
             // $employee->body_datas = json_decode(file_post_contents('http://172.26.153.11/api/invoice-list', ["query"=>$query]), true);
-            
             console_log(
                '<div class="container"><label>Илгээсэн</label>'.$employee->diplay_table().'</div>'
             );

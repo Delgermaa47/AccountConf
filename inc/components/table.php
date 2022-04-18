@@ -32,7 +32,8 @@
                 $table_body = $table_body.'<tr>';
                 foreach($header_body_req as $key=>$head_value) {
                     $table_body = $table_body.'<td class='.$head_value['className'].'>';
-                    $field_name = $body_value[strtoupper($head_value['field'])];
+                    // $field_name = $body_value[strtoupper($head_value['field'])];
+                    $field_name = $body_value[$head_value['field']];
                     $table_body = $table_body.($head_value['have_icon'] ? " " : $field_name);
                     
                     if($added_datas && $head_value['action']) {
