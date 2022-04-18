@@ -2,7 +2,7 @@
 <?php
     require_once ROOT."\\inc\\header.php";
     require_once ROOT."\\inc\\components\\table.php";
-    require_once ROOT."\\inc\\components\\sub_components\\invoice_form.php";
+    require_once ROOT."\\inc\\components\\invoice_form.php";
 
     
     class PageRequest
