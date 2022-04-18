@@ -15,7 +15,7 @@
         echo htmlentities($e['message'], ENT_QUOTES);
         unset($db_user); unset($db_pass);
     }
-    
+
     define('PG_Conn', $conn); 
 
     function fetch_rows($stid) {
@@ -35,7 +35,7 @@
         return $stid;
     }
 
-    function _select($query, $params) {
+    function _select($query, $params=[]) {
         $stid = sql_execute($query, $params);
         return fetch_rows($stid);
     }
