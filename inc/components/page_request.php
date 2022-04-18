@@ -29,13 +29,14 @@
         public function request_res() {
 
             $request_name = strtolower($this->request_name);
-
             switch ($request_name) {
                 case 'home':
                     $this->navbar();
+                    die();
+                case 'account-config':
                     $this->home();
                     die();
-                
+                    
                 default: $this->page404();
 
             }
@@ -43,22 +44,28 @@
 
         protected function  navbar() {
             echo 
-                '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <div class="container main_header">
-                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                            <div class="container-fluid">
-                                <div class="collapse navbar-collapse">
-                                    <ul class="navbar-nav list-unstyled">
-                                        <li class="nav-item">
-                                            <a class="nav-link col-md-12" href="\">Нэхэмжлэлийн жагсаалт</a>
-                                        </li>
-                                    </ul>
+                '<div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="griddiv">
+                                <div class="list-header col-md-12" style="margin-bottom: 0px;">
+                                    <label"><span class="uldown"></span>VB тохиргооны хуудас</label>
+                                </div>
+                                <div
+                                    class="col-md-12 list-group-item-action">
+                                    <a 
+                                        href="#"
+                                        class="fa fa-gear"
+                                        style="text-align:center;">Дансны тохиргооны цэс</a>
                                 </div>
                             </div>
-                            </nav>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="griddiv" id="content">
+                            </div>
                         </div>
                     </div>
-                </nav>';
+                </div>';
         }
 
         protected function home() {

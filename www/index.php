@@ -14,6 +14,7 @@
 
     $page_requests = array( 
         'home' => "/",
+        'account-config' => "/account-config",
     );
 
     $post_requests = array(
