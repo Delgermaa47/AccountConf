@@ -32,7 +32,6 @@
             switch ($request_name) {
                 case 'home':
                     $this->navbar();
-                    // $this->home();
                     die();
                 case 'account-config':
                     $this->home();
@@ -45,8 +44,6 @@
 
         protected function  navbar() {
             $request_url = 'http://localhost:81/index.php?page=account-config';
-            $open_modal = 'http://localhost:81/index.php?api=open-modal';
-            $content = $this->home();
             echo 
                 '<div class="container">
                     <div class="row">
@@ -60,7 +57,7 @@
                                     <div 
                                         class="col-md-12 text-primary d-flex justify-content-center ml-2"
                                     >
-                                        <a onclick="getPage('.check_string($request_url).')" role="button">
+                                        <a onclick="getPage('.check_string($request_url).','.check_string('content').')" role="button">
                                             <i class="fa fa-gear mr-1 mt-1"></i>
                                             Дансны тохиргооны хэсэг
                                         </a>
@@ -75,24 +72,6 @@
                                         class="col-md-12 text-primary d-block"
                                         id="content"
                                     >
-                                        <div class="col-md-12 border-bottom border-primary">
-                                            <i class="fa fa-minus-circle mr-1 mt-1"></i>
-                                            <label class="">VB тохиргооны хуудас</label>
-                                        </div>
-                                        <div class="col-md-12 py-4">
-                                        <div class="col-md-12">
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary rounded float-right"
-                                                onclick="getPage('.check_string($open_modal).')" 
-                                                role="button">
-                                                Нэмэх
-                                            </button>
-                                        </div>
-                                        '.
-                                            $content
-                                        .'
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -102,10 +81,19 @@
         }
 
         protected function home() {
-
+            $open_modal = 'http://localhost:81/index.php?api=open-modal';
             function _delete_comp($id) {
+                $delete_url = 'http://localhost:81/index.php?api=open-modal';
+                $arr = [];
+                // onclick="openModal('.$delete_url.join(",", $arr).')" 
                 return '
-                    <a class="text-danger" href="\api\delete-sent-invoice\\'.$id.'" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a 
+                        class="text-danger" 
+                        type="button".
+                        onclick="openModal('.check_string($delete_url).')" 
+                        role="button">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
                 ';
             }
 
@@ -128,13 +116,12 @@
             $employee->added_datas = array(
                 "delete_row" => "_delete_comp",
                 "edit_row" => "_edit_comp",
-                // "pay_row" => "_pay_comp"
             );
             $query = '
                 select
                     types, prodname
                 from 
-                    forsoft.tabpro_product_dic
+                    forsoft.tabpro_product_dic_test
                 group by types,  prodname
                 order by types
                 ';
@@ -150,8 +137,27 @@
                 }
             }
             $employee->body_datas = $temp_data;
-            // $employee->body_datas = json_decode(file_post_contents('http://172.26.153.11/api/invoice-list', ["query"=>$query]), true);
-            return $employee->diplay_table();
+            echo '
+            <div class="col-md-12 border-bottom border-primary">
+                <i class="fa fa-minus-circle mr-1 mt-1"></i>
+                <label class="">VB тохиргооны хуудас</label>
+            </div>
+            <div class="col-md-12 py-4">
+                <div class="col-md-12">
+                    <button
+                        type="button"
+                        class="btn btn-primary rounded float-right"
+                        onclick="getPage('.check_string($open_modal).','.check_string('delete_types').')" 
+                        role="button">
+                        Нэмэх
+                    </button>
+                </div>
+                <div class="cold-md-12">
+                '.$employee->diplay_table().'
+                </div>
+            </div>
+            ';
+            
         } 
         protected function inv_detial() {
             $invoice_form = new InvoiceForm();

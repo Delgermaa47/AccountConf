@@ -8,7 +8,7 @@
     $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
 
     $api_requests = array( 
-        'open-modal' => "/open-modal",
+        'open-modal' => "/api/open-modal",
     );
 
     $page_requests = array( 
@@ -19,8 +19,7 @@
     $request_method = $_SERVER['REQUEST_METHOD'];
 
     $uri = '/' . get_or_null($_GET['page']);
-    $uri = $uri. get_or_null($_GET['api']);
-
+    $uri = $uri. (get_or_null($_GET['api']) ? 'api/'.get_or_null($_GET['api']) : '');
     if (in_array($request_method, ['GET', 'POST'])) {
 
         if (strstr($uri, "api")) {
